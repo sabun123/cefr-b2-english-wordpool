@@ -7,6 +7,10 @@ class WordpoolGame {
         this.gameItems = [];
         this.totalItems = 4; // Number of items per round (between 3-5)
         this.totalPossibleScore = 0;
+        // Footer copyright
+        const currentYear = new Date().getFullYear();
+        const copyrightYear = document.getElementById('copyright-year');
+        copyrightYear.textContent = currentYear > 2025 ? `2025-${currentYear}` : '2025';
         this.init();
     }
 
