@@ -61,7 +61,26 @@ class WordpoolGame {
 
     updateSentenceArea() {
         const sentenceArea = document.getElementById('sentenceArea');
-        sentenceArea.textContent = this.selectedWords.join(' ');
+        sentenceArea.innerHTML = '';
+        
+        this.selectedWords.forEach((word, index) => {
+            const wordSpan = document.createElement('span');
+            wordSpan.className = 'sentence-word';
+            wordSpan.textContent = word;
+            wordSpan.addEventListener('click', () => this.removeWord(index));
+            
+            if (index > 0) {
+                sentenceArea.appendChild(document.createTextNode(' '));
+            }
+            
+            sentenceArea.appendChild(wordSpan);
+        });
+    }
+
+    removeWord(index) {
+        this.selectedWords.splice(index, 1);
+        this.updateSentenceArea();
+        this.checkSentence();
     }
 
     checkSentence() {

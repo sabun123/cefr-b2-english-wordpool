@@ -4,6 +4,7 @@
     --button-bg: #4CAF50;
     --button-text: white;
     --word-bg: #e0e0e0;
+    --sentence-word-bg: #f0f0f0; /* Lighter background for sentence words */
 }
 
 [data-theme="dark"] {
@@ -12,6 +13,7 @@
     --button-bg: #45a049;
     --button-text: white;
     --word-bg: #4a4a4a;
+    --sentence-word-bg: #555555; /* Lighter background for dark mode */
 }
 
 body {
@@ -47,6 +49,11 @@ body {
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 8px;
+    line-height: 2.2; /* Add spacing between wrapped lines */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
 }
 
 .word-pool {
@@ -62,6 +69,21 @@ body {
     border-radius: 20px;
     cursor: pointer;
     user-select: none;
+}
+
+.sentence-word {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: var(--sentence-word-bg);
+    opacity: 0.5; /* Make the background lighter */
+    border-radius: 12px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    line-height: normal; /* Reset line height for the word itself */
+}
+
+.sentence-word:hover {
+    opacity: 0.8;
 }
 
 button {
