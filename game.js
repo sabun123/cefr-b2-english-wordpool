@@ -101,26 +101,52 @@ class WordpoolGame {
         const currentData = data[this.currentDataIndex];
         
         if (currentData.sentences.includes(currentSentence)) {
+            // Trigger success animations
+            this.animateSuccess();
+            
             this.score++;
             this.remainingSentences--;
             this.updateRemainingSentences();
             
-            // Reset sentence area
-            this.selectedWords = [];
-            this.updateSentenceArea();
-            
-            // Only shuffle words after first successful sentence
-            this.displayWordPool(this.shuffleArray([...this.currentWords]));
-            
-            if (this.remainingSentences === 0) {
-                this.nextQuestion();
-            }
+            // Delay reset to allow animations to complete
+            setTimeout(() => {
+                this.selectedWords = [];
+                this.updateSentenceArea();
+                this.displayWordPool(this.shuffleArray([...this.currentWords]));
+                
+                if (this.remainingSentences === 0) {
+                    this.nextQuestion();
+                }
+            }, 1000);
         }
     }
 
+    animateSuccess() {
+        // Animate sentence area
+        const sentenceArea = document.getElementById('sentenceArea');
+        sentenceArea.classList.add('success');
+        setTimeout(() => sentenceArea.classList.remove('success'), 1000);
+
+        // Animate remaining count
+        const remainingCount = document.getElementById('remainingSentences');
+        remainingCount.classList.add('remaining-count-animate');
+        setTimeout(() => remainingCount.classList.remove('remaining-count-animate'), 500);
+
+        // Animate words to fade out
+        const words = sentenceArea.querySelectorAll('.sentence-word');
+        words.forEach(word => {
+            word.classList.add('word-fade-out');
+        });
+    }
+
     updateRemainingSentences() {
-        document.getElementById('remainingSentences').textContent = 
-            `Remaining sentences: ${this.remainingSentences}`;
+        const remainingElement = document.getElementById('remainingSentences');
+        const newCount = `Remaining sentences: ${this.remainingSentences}`;
+        
+        // Only animate if content is changing
+        if (remainingElement.textContent !== newCount) {
+            remainingElement.textContent = newCount;
+        }
     }
 
     nextQuestion() {

@@ -5,6 +5,7 @@
     --button-text: white;
     --word-bg: #e0e0e0;
     --sentence-word-bg: #f0f0f0; /* Lighter background for sentence words */
+    --success-color: #4CAF50;
 }
 
 [data-theme="dark"] {
@@ -14,6 +15,7 @@
     --button-text: white;
     --word-bg: #4a4a4a;
     --sentence-word-bg: #555555; /* Lighter background for dark mode */
+    --success-color: #45a049;
 }
 
 body {
@@ -56,11 +58,16 @@ body {
     gap: 8px;
 }
 
+.sentence-area.success {
+    animation: successBorder 1s ease-in-out;
+}
+
 .word-pool {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 20px;
+    perspective: 1000px;
 }
 
 .word {
@@ -69,6 +76,11 @@ body {
     border-radius: 20px;
     cursor: pointer;
     user-select: none;
+    transition: transform 0.3s ease;
+}
+
+.word:hover {
+    transform: scale(1.05) translateY(-2px);
 }
 
 .sentence-word {
@@ -97,6 +109,32 @@ button {
 
 button:hover {
     opacity: 0.9;
+}
+
+@keyframes successBorder {
+    0% { border-color: var(--text-color); border-width: 2px; }
+    50% { border-color: var(--success-color); border-width: 6px; }
+    100% { border-color: var(--text-color); border-width: 2px; }
+}
+
+@keyframes successScale {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.remaining-count-animate {
+    animation: successScale 0.5s ease-in-out;
+    display: inline-block;
+}
+
+.word-fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
 }
 
 @media (max-width: 600px) {
