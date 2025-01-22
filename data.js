@@ -28,41 +28,41 @@ const data = [
     {
     "words": ["Traveling", "broadens", "horizons", "and", "enriches", "lives"],
     "sentences": [
-        "Traveling broadens horizons and enriches lives.",
-        "Horizons are broadened and lives enriched by traveling.",
-        "Lives are enriched and horizons broadened through traveling.",
-        "Traveling enriches lives and broadens horizons.",
-        "Broadening horizons and enriching lives come from traveling."
+        "Traveling broadens horizons and enriches lives",
+        "Horizons are broadened and lives enriched by traveling",
+        "Lives are enriched and horizons broadened through traveling",
+        "Traveling enriches lives and broadens horizons",
+        "Broadening horizons and enriching lives come from traveling"
     ]
     },
     {
     "words": ["Exercise", "boosts", "energy", "levels", "and", "improves", "health"],
     "sentences": [
-        "Exercise boosts energy levels and improves health.",
-        "Energy levels are boosted and health improved by exercise.",
-        "Health is improved and energy levels boosted through exercise.",
-        "Exercise improves health and boosts energy levels.",
-        "Boosting energy levels and improving health come from exercise."
+        "Exercise boosts energy levels and improves health",
+        "Energy levels are boosted and health improved by exercise",
+        "Health is improved and energy levels boosted through exercise",
+        "Exercise improves health and boosts energy levels",
+        "Boosting energy levels and improving health come from exercise"
     ]
     },
     {
         "words": ["Eating", "balanced", "meals", "promotes", "wellness", "and", "vitality"],
         "sentences": [
-            "Eating balanced meals promotes wellness and vitality.",
-            "Balanced meals promote wellness and enhance vitality.",
-            "Wellness and vitality are promoted by eating balanced meals.",
-            "Eating balanced meals enhances wellness and boosts vitality.",
-            "Vitality and wellness are improved by consuming balanced meals."
+            "Eating balanced meals promotes wellness and vitality",
+            "Balanced meals promote wellness and enhance vitality",
+            "Wellness and vitality are promoted by eating balanced meals",
+            "Eating balanced meals enhances wellness and boosts vitality",
+            "Vitality and wellness are improved by consuming balanced meals"
         ]
     },
     {
         "words": ["Regular", "practice", "enhances", "skills", "and", "builds", "confidence"],
         "sentences": [
-          "Regular practice enhances skills and builds confidence.",
-          "Skills are enhanced and confidence built through regular practice.",
-          "Confidence is built and skills enhanced by regular practice.",
-          "Regular practice builds confidence and enhances skills.",
-          "Enhancing skills and building confidence come from regular practice."
+          "Regular practice enhances skills and builds confidence",
+          "Skills are enhanced and confidence built through regular practice",
+          "Confidence is built and skills enhanced by regular practice",
+          "Regular practice builds confidence and enhances skills",
+          "Enhancing skills and building confidence come from regular practice"
         ]
       }
 ];

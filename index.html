@@ -12,6 +12,14 @@
             <h1>CEFR B2 English Wordpool 📖</h1>
             <button id="darkModeToggle">🌓</button>
         </div>
+        <div class="progress-section">
+            <div class="progress-label">
+                <span id="progressText">Question 1 of 4</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
         <div class="game-container">
             <div class="progress">
                 <span id="remainingSentences">Remaining sentences: 0</span>
@@ -22,7 +30,10 @@
         </div>
         <div class="score-screen" id="scoreScreen" style="display: none">
             <h2>Game Complete!</h2>
-            <p>Your score: <span id="finalScore">0</span></p>
+            <div class="score-details">
+                <p>Sentences completed: <span id="finalScore">0</span>/<span id="totalPossible">0</span></p>
+                <p>Success rate: <span id="successRate">0%</span></p>
+            </div>
             <button id="restartButton">Play Again</button>
         </div>
     </div>

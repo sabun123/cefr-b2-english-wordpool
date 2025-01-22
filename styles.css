@@ -6,6 +6,8 @@
     --word-bg: #e0e0e0;
     --sentence-word-bg: #f0f0f0; /* Lighter background for sentence words */
     --success-color: #4CAF50;
+    --progress-bg: #f0f0f0;
+    --progress-fill: #4CAF50;
 }
 
 [data-theme="dark"] {
@@ -16,6 +18,8 @@
     --word-bg: #4a4a4a;
     --sentence-word-bg: #555555; /* Lighter background for dark mode */
     --success-color: #45a049;
+    --progress-bg: #444444;
+    --progress-fill: #45a049;
 }
 
 body {
@@ -111,6 +115,53 @@ button:hover {
     opacity: 0.9;
 }
 
+.progress-section {
+    margin-bottom: 20px;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.progress-container {
+    width: 100%;
+    height: 10px;
+    background-color: var(--progress-bg);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--progress-fill);
+    transition: width 0.5s ease-in-out;
+    width: 0;
+}
+
+.score-details {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.2em;
+    padding: 20px;
+    background-color: var(--sentence-word-bg);
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.score-details p {
+    margin: 10px 0;
+}
+
+#successRate {
+    font-weight: bold;
+    color: var(--success-color);
+}
+
 @keyframes successBorder {
     0% { border-color: var(--text-color); border-width: 2px; }
     50% { border-color: var(--success-color); border-width: 6px; }
@@ -150,4 +201,20 @@ button:hover {
         padding: 6px 12px;
         font-size: 14px;
     }
+}
+
+.score-screen {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.score-screen h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: var(--text-color);
+}
+
+#restartButton {
+    font-size: 1.1em;
+    padding: 12px 24px;
 }

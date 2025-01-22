@@ -4,13 +4,39 @@ class WordpoolGame {
         this.score = 0;
         this.selectedWords = [];
         this.remainingSentences = 0;
+        this.gameItems = [];
+        this.totalItems = 4; // Number of items per round (between 3-5)
+        this.totalPossibleScore = 0;
         this.init();
     }
 
     init() {
         this.setupDarkMode();
         this.setupEventListeners();
+        this.selectRandomItems();
         this.loadCurrentQuestion();
+    }
+
+    selectRandomItems() {
+        // Create array of indices and shuffle them
+        const indices = Array.from({ length: data.length }, (_, i) => i);
+        this.shuffleArray(indices);
+        
+        // Take first 3-5 items
+        this.totalItems = Math.floor(Math.random() * 3) + 3; // Random number between 3-5
+        this.gameItems = indices.slice(0, this.totalItems).map(i => data[i]);
+        
+        // Calculate total possible score from selected items
+        this.totalPossibleScore = this.gameItems.reduce((total, item) => total + item.sentences.length, 0);
+    }
+
+    updateProgress() {
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const progress = (this.currentDataIndex / this.totalItems) * 100;
+        
+        progressBar.style.width = `${progress}%`;
+        progressText.textContent = `Question ${this.currentDataIndex + 1} of ${this.totalItems}`;
     }
 
     setupDarkMode() {
@@ -36,12 +62,12 @@ class WordpoolGame {
     }
 
     loadCurrentQuestion() {
-        if (this.currentDataIndex >= data.length) {
+        if (this.currentDataIndex >= this.totalItems) {
             this.showGameComplete();
             return;
         }
 
-        const currentData = data[this.currentDataIndex];
+        const currentData = this.gameItems[this.currentDataIndex];
         // Only set remainingSentences if it's not already set (new question)
         if (this.remainingSentences === 0) {
             this.remainingSentences = currentData.sentences.length;
@@ -52,6 +78,7 @@ class WordpoolGame {
         // Display words in original order initially
         this.displayWordPool(this.currentWords);
         this.updateSentenceArea();
+        this.updateProgress();
     }
 
     displayWordPool(words) {
@@ -98,7 +125,7 @@ class WordpoolGame {
 
     checkSentence() {
         const currentSentence = this.selectedWords.join(' ');
-        const currentData = data[this.currentDataIndex];
+        const currentData = this.gameItems[this.currentDataIndex];
         
         if (currentData.sentences.includes(currentSentence)) {
             // Trigger success animations
@@ -156,10 +183,26 @@ class WordpoolGame {
     }
 
     showGameComplete() {
-        document.querySelector('.game-container').style.display = 'none';
-        const scoreScreen = document.getElementById('scoreScreen');
-        scoreScreen.style.display = 'block';
-        document.getElementById('finalScore').textContent = this.score;
+        // Update progress to 100% before showing score screen
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        progressBar.style.width = '100%';
+        progressText.textContent = `Complete!`;
+
+        // Short delay before showing score screen
+        setTimeout(() => {
+            document.querySelector('.game-container').style.display = 'none';
+            const scoreScreen = document.getElementById('scoreScreen');
+            scoreScreen.style.display = 'block';
+            
+            // Update score displays
+            document.getElementById('finalScore').textContent = this.score;
+            document.getElementById('totalPossible').textContent = this.totalPossibleScore;
+            
+            // Calculate and display success rate
+            const successRate = (this.score / this.totalPossibleScore * 100).toFixed(1);
+            document.getElementById('successRate').textContent = `${successRate}%`;
+        }, 500);
     }
 
     restartGame() {
@@ -167,6 +210,7 @@ class WordpoolGame {
         this.score = 0;
         document.querySelector('.game-container').style.display = 'block';
         document.getElementById('scoreScreen').style.display = 'none';
+        this.selectRandomItems(); // Select new random items for new game
         this.loadCurrentQuestion();
     }
 }
