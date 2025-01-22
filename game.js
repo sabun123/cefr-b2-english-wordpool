@@ -27,6 +27,14 @@ class WordpoolGame {
         document.getElementById('restartButton').addEventListener('click', () => this.restartGame());
     }
 
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
     loadCurrentQuestion() {
         if (this.currentDataIndex >= data.length) {
             this.showGameComplete();
@@ -34,10 +42,15 @@ class WordpoolGame {
         }
 
         const currentData = data[this.currentDataIndex];
-        this.remainingSentences = currentData.sentences.length;
-        this.updateRemainingSentences();
+        // Only set remainingSentences if it's not already set (new question)
+        if (this.remainingSentences === 0) {
+            this.remainingSentences = currentData.sentences.length;
+            this.updateRemainingSentences();
+        }
         this.selectedWords = [];
-        this.displayWordPool(currentData.words);
+        this.currentWords = [...currentData.words];
+        // Display words in original order initially
+        this.displayWordPool(this.currentWords);
         this.updateSentenceArea();
     }
 
@@ -92,11 +105,15 @@ class WordpoolGame {
             this.remainingSentences--;
             this.updateRemainingSentences();
             
+            // Reset sentence area
+            this.selectedWords = [];
+            this.updateSentenceArea();
+            
+            // Only shuffle words after first successful sentence
+            this.displayWordPool(this.shuffleArray([...this.currentWords]));
+            
             if (this.remainingSentences === 0) {
                 this.nextQuestion();
-            } else {
-                this.selectedWords = [];
-                this.updateSentenceArea();
             }
         }
     }
@@ -107,6 +124,7 @@ class WordpoolGame {
     }
 
     nextQuestion() {
+        this.remainingSentences = 0; // Reset before loading next question
         this.currentDataIndex++;
         this.loadCurrentQuestion();
     }
