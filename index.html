@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEFR B2 English Wordpool Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CEFR B2 English Wordpool</h1>
+            <button id="darkModeToggle">🌓</button>
+        </div>
+        <div class="game-container">
+            <div class="progress">
+                <span id="remainingSentences">Remaining sentences: 0</span>
+                <button id="skipButton">Skip</button>
+            </div>
+            <div class="sentence-area" id="sentenceArea"></div>
+            <div class="word-pool" id="wordPool"></div>
+        </div>
+        <div class="score-screen" id="scoreScreen" style="display: none">
+            <h2>Game Complete!</h2>
+            <p>Your score: <span id="finalScore">0</span></p>
+            <button id="restartButton">Play Again</button>
+        </div>
+    </div>
+    <script src="data.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

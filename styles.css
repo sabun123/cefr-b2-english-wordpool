@@ -1,0 +1,93 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --button-bg: #4CAF50;
+    --button-text: white;
+    --word-bg: #e0e0e0;
+}
+
+[data-theme="dark"] {
+    --bg-color: #333333;
+    --text-color: #ffffff;
+    --button-bg: #45a049;
+    --button-text: white;
+    --word-bg: #4a4a4a;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.progress {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.sentence-area {
+    min-height: 100px;
+    border: 2px dashed var(--text-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.word-pool {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.word {
+    padding: 8px 16px;
+    background-color: var(--word-bg);
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    .word-pool {
+        gap: 5px;
+    }
+    
+    .word {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
