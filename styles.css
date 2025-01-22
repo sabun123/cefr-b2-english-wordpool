@@ -89,6 +89,10 @@ body {
     transform: scale(1.05) translateY(-2px);
 }
 
+.word.hint {
+    animation: hintPulse 1s infinite;
+}
+
 .sentence-word {
     display: inline-block;
     padding: 4px 8px;
@@ -115,6 +119,11 @@ button {
 
 button:hover {
     opacity: 0.9;
+}
+
+#hintButton {
+    padding: 8px 12px;
+    font-size: 1.1em;
 }
 
 .progress-section {
@@ -213,6 +222,12 @@ button:hover {
     to { opacity: 0; }
 }
 
+@keyframes hintPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); background-color: var(--success-color); }
+    100% { transform: scale(1); }
+}
+
 .remaining-count-animate {
     animation: successScale 0.5s ease-in-out;
     display: inline-block;
@@ -220,6 +235,11 @@ button:hover {
 
 .word-fade-out {
     animation: fadeOut 0.3s ease-out forwards;
+}
+
+.game-buttons {
+    display: flex;
+    gap: 10px;
 }
 
 /* Mobile Responsiveness */
