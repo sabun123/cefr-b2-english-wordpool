@@ -2,6 +2,7 @@
 
 A FREE simple, interactive web application for practicing CEFR B2 English vocabulary. The application randomly presents you with an empty sentence and a word pool of vocabulary. Make as many sentences from the vocabulary as you can to complete the task!
 
+🚧 There are still issues with the dataset. Clean-up is needed from the possible sentences list as there are garbage sentences that aren't grammatically correct.
 
 ## Live Site
 
@@ -31,11 +32,13 @@ Go to the above link to access the site and start learning with self-testing tod
    ```bash
    git clone https://github.com/sabun123/cefr-a1-english.git
    cd cefr-a1-english
+   ```
 
 To run this locally, you have several options as mentioned in the README. Here's a more detailed explanation of what's happening when you use each method:
 
 1. **Python's built-in server** is the simplest if you already have Python installed:
    ```bash
    python -m http.server 8000
+   ```
 
 Then just open any browser and go to localhost:8000
